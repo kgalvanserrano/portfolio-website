@@ -288,6 +288,7 @@ function App() {
               GitHub
             </Button>
           </div>
+          </div>
         </div>
       </section>
 
