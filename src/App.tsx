@@ -2,12 +2,13 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { ArrowUpRight, Github, LinkedinLogo, EnvelopeSimple, MapPin, Calendar, Phone } from "@phosphor-icons/react"
+import { ArrowUpRight, Github, LinkedinLogo, EnvelopeSimple, MapPin, Calendar, Phone, Sun, Moon } from "@phosphor-icons/react"
 import { useEffect, useState } from "react"
 
 function App() {
   const [userInfo, setUserInfo] = useState<any>(null)
   const [githubRepos, setGithubRepos] = useState<any[]>([])
+  const [isDark, setIsDark] = useState(true)
 
   useEffect(() => {
     // Get user info and try to fetch GitHub repositories
@@ -29,6 +30,11 @@ function App() {
     
     fetchUserData()
   }, [])
+
+  const toggleTheme = () => {
+    setIsDark(!isDark)
+    document.documentElement.className = isDark ? 'light' : ''
+  }
   const skills = {
     "Programming": ["Python", "Java", "JavaScript", "React", "Node.js"],
     "Data & Analytics": ["SQL", "MongoDB", "Tableau", "Python Analytics", "BigQuery"],
@@ -36,6 +42,13 @@ function App() {
   }
 
   const experiences = [
+    {
+      title: "App Developer Intern",
+      company: "TeachMeets",
+      location: "Remote",
+      period: "Oct 2024 - Present",
+      description: "Currently developing mobile applications as part of the development team. Working with modern frameworks and contributing to user-facing features while under NDA. Gaining valuable experience in agile development practices and collaborative software engineering."
+    },
     {
       title: "Full Stack Developer Intern",
       company: "NASA Ames Research Center",
@@ -47,8 +60,8 @@ function App() {
       title: "QC & Operations Supervisor", 
       company: "Crystal",
       location: "San Jose, CA",
-      period: "May 2018 - Present",
-      description: "Implementing data-driven decision-making processes, overseeing inventory management and safety compliance, while regularly conducting operational analysis to enhance efficiency. Conducting end-to-end project management, optimizing resource allocation, reducing costs, and maintaining service excellence."
+      period: "May 2018 - Oct 2024",
+      description: "Implemented data-driven decision-making processes, overseeing inventory management and safety compliance, while regularly conducting operational analysis to enhance efficiency. Conducted end-to-end project management, optimizing resource allocation, reducing costs, and maintaining service excellence."
     }
   ]
 
@@ -78,27 +91,39 @@ function App() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Theme Toggle */}
+      <div className="fixed top-6 right-6 z-50">
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={toggleTheme}
+          className="bg-card/80 backdrop-blur-sm border-border/50 hover:bg-accent/20 transition-all duration-300 animate-scale-in animate-delay-500"
+        >
+          {isDark ? <Sun size={18} /> : <Moon size={18} />}
+        </Button>
+      </div>
+
       {/* Hero Section */}
       <section className="px-6 py-16 md:py-24 max-w-4xl mx-auto">
         <div className="flex flex-col md:flex-row items-start gap-8">
-          <div className="flex-1">
-            <div className="flex items-center gap-3 mb-4">
+          <div className="flex-1 animate-slide-up">
+            <div className="flex items-center gap-3 mb-4 animate-fade-in animate-delay-200">
               <div className="flex items-center gap-2 text-muted-foreground text-sm">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 Available for hire
               </div>
             </div>
             
-            <h1 className="mb-4">
-              Hi, I'm <span className="text-primary">Kevin Galvan Serrano</span>
+            <h1 className="mb-4 animate-slide-up animate-delay-100">
+              Hi, I'm <span className="text-primary bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Kevin Galvan Serrano</span>
             </h1>
             
-            <p className="text-xl text-muted-foreground mb-6 leading-relaxed">
+            <p className="text-xl text-muted-foreground mb-6 leading-relaxed animate-slide-up animate-delay-200">
               Full Stack Developer with experience at NASA Ames Research Center and expertise in data analytics. 
-              Recent graduate with hands-on experience in React, Python, and database management, seeking to contribute innovative solutions to challenging projects.
+              Currently developing mobile applications at TeachMeets, seeking to contribute innovative solutions to challenging projects.
             </p>
             
-            <div className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground mb-8 animate-slide-up animate-delay-300">
               <MapPin size={16} />
               San Jose, CA
               <span className="mx-2">•</span>
@@ -109,21 +134,21 @@ function App() {
               Available immediately
             </div>
             
-            <div className="flex flex-wrap gap-3">
-              <Button size="lg" className="gap-2" onClick={() => window.open('mailto:kevin.galvanserrano@gmail.com')}>
+            <div className="flex flex-wrap gap-3 animate-slide-up animate-delay-400">
+              <Button size="lg" className="gap-2 hover:scale-105 transition-transform duration-200 animate-glow" onClick={() => window.open('mailto:kevin.galvanserrano@gmail.com')}>
                 <EnvelopeSimple size={18} />
                 Get in touch
               </Button>
-              <Button variant="outline" size="lg" className="gap-2" onClick={() => window.open(userInfo?.login ? `https://github.com/${userInfo.login}` : '#')}>
+              <Button variant="outline" size="lg" className="gap-2 hover:scale-105 transition-transform duration-200" onClick={() => window.open(userInfo?.login ? `https://github.com/${userInfo.login}` : '#')}>
                 <Github size={18} />
                 View work
               </Button>
             </div>
           </div>
           
-          <div className="flex-shrink-0">
-            <Avatar className="w-32 h-32 border-4 border-primary/10">
-              <AvatarFallback className="text-2xl font-semibold bg-primary/5 text-primary">
+          <div className="flex-shrink-0 animate-float">
+            <Avatar className="w-32 h-32 border-4 border-primary/20 shadow-2xl shadow-primary/20 animate-scale-in animate-delay-300">
+              <AvatarFallback className="text-2xl font-semibold bg-gradient-to-br from-primary/10 to-accent/10 text-primary">
                 KGS
               </AvatarFallback>
             </Avatar>
@@ -134,11 +159,11 @@ function App() {
       {/* Experience Section */}
       <section className="px-6 py-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="mb-8 text-center">Professional Experience</h2>
+          <h2 className="mb-8 text-center animate-slide-up">Professional Experience</h2>
           
           <div className="space-y-8">
             {experiences.map((exp, index) => (
-              <Card key={index} className="border-0 shadow-sm">
+              <Card key={index} className="border-0 shadow-sm hover:shadow-xl transition-all duration-500 hover:scale-[1.02] animate-slide-up bg-card/50 backdrop-blur-sm" style={{animationDelay: `${index * 0.1}s`}}>
                 <CardHeader>
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
                     <div>
@@ -149,7 +174,7 @@ function App() {
                         <span className="text-muted-foreground text-sm">{exp.location}</span>
                       </div>
                     </div>
-                    <Badge variant="outline" className="text-xs self-start md:self-center">
+                    <Badge variant="outline" className="text-xs self-start md:self-center animate-pulse">
                       {exp.period}
                     </Badge>
                   </div>
@@ -164,20 +189,20 @@ function App() {
       </section>
 
       {/* Skills Section */}
-      <section className="px-6 py-16 bg-secondary/30">
+      <section className="px-6 py-16 bg-secondary/30 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto">
-          <h2 className="mb-8 text-center">Skills & Technologies</h2>
+          <h2 className="mb-8 text-center animate-slide-up">Skills & Technologies</h2>
           
           <div className="grid md:grid-cols-3 gap-8">
-            {Object.entries(skills).map(([category, techs]) => (
-              <Card key={category} className="border-0 shadow-sm">
+            {Object.entries(skills).map(([category, techs], index) => (
+              <Card key={category} className="border-0 shadow-sm hover:shadow-xl transition-all duration-500 hover:scale-105 animate-slide-up bg-card/50 backdrop-blur-sm" style={{animationDelay: `${index * 0.1}s`}}>
                 <CardHeader className="pb-4">
                   <CardTitle className="text-lg">{category}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-wrap gap-2">
-                    {techs.map((tech) => (
-                      <Badge key={tech} variant="secondary" className="text-xs">
+                    {techs.map((tech, techIndex) => (
+                      <Badge key={tech} variant="secondary" className="text-xs hover:scale-110 transition-transform duration-200 animate-fade-in" style={{animationDelay: `${(index * 0.1) + (techIndex * 0.05)}s`}}>
                         {tech}
                       </Badge>
                     ))}
@@ -192,16 +217,16 @@ function App() {
       {/* Projects Section */}
       <section className="px-6 py-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="mb-8 text-center">Featured Projects</h2>
+          <h2 className="mb-8 text-center animate-slide-up">Featured Projects</h2>
           
           <div className="grid gap-8">
             {projects.map((project, index) => (
-              <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-0 shadow-sm">
+              <Card key={index} className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-sm hover:scale-[1.02] animate-slide-up bg-card/50 backdrop-blur-sm" style={{animationDelay: `${index * 0.1}s`}}>
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
-                        <CardTitle>{project.title}</CardTitle>
+                        <CardTitle className="group-hover:text-primary transition-colors duration-300">{project.title}</CardTitle>
                         <Badge variant="outline" className="text-xs">
                           {project.period}
                         </Badge>
@@ -213,8 +238,8 @@ function App() {
                   </div>
                   
                   <div className="flex flex-wrap gap-2 mt-4">
-                    {project.tech.map((tech) => (
-                      <Badge key={tech} variant="outline" className="text-xs">
+                    {project.tech.map((tech, techIndex) => (
+                      <Badge key={tech} variant="outline" className="text-xs hover:bg-primary/10 transition-colors duration-200 animate-fade-in" style={{animationDelay: `${(index * 0.1) + (techIndex * 0.05)}s`}}>
                         {tech}
                       </Badge>
                     ))}
@@ -226,7 +251,7 @@ function App() {
                     <Button 
                       variant="ghost" 
                       size="sm" 
-                      className="gap-2"
+                      className="gap-2 hover:scale-105 transition-transform duration-200"
                       onClick={() => window.open(project.githubUrl)}
                     >
                       <Github size={16} />
@@ -241,12 +266,12 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section className="px-6 py-16 bg-secondary/30">
+      <section className="px-6 py-16 bg-secondary/30 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto">
           {/* Education */}
           <div className="mb-16">
-            <h2 className="mb-8 text-center">Education</h2>
-            <Card className="border-0 shadow-sm max-w-2xl mx-auto">
+            <h2 className="mb-8 text-center animate-slide-up">Education</h2>
+            <Card className="border-0 shadow-sm max-w-2xl mx-auto hover:shadow-xl transition-all duration-500 animate-scale-in bg-card/50 backdrop-blur-sm">
               <CardHeader>
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
                   <div>
@@ -268,22 +293,22 @@ function App() {
           
           {/* Contact */}
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="mb-4">Let's work together</h2>
-            <p className="text-muted-foreground mb-8 text-lg">
-              Experienced full stack developer with NASA internship and strong data analytics background. 
+            <h2 className="mb-4 animate-slide-up">Let's work together</h2>
+            <p className="text-muted-foreground mb-8 text-lg animate-slide-up animate-delay-100">
+              Experienced full stack developer with NASA internship and current mobile app development experience. 
               Ready to contribute technical expertise and problem-solving skills to your team.
             </p>
           
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg" className="gap-2" onClick={() => window.open('mailto:kevin.galvanserrano@gmail.com')}>
+          <div className="flex flex-wrap justify-center gap-4 animate-slide-up animate-delay-200">
+            <Button size="lg" className="gap-2 hover:scale-105 transition-transform duration-200 animate-glow" onClick={() => window.open('mailto:kevin.galvanserrano@gmail.com')}>
               <EnvelopeSimple size={18} />
               kevin.galvanserrano@gmail.com
             </Button>
-            <Button variant="outline" size="lg" className="gap-2" onClick={() => window.open('https://linkedin.com/in/kevingalvanserrano')}>
+            <Button variant="outline" size="lg" className="gap-2 hover:scale-105 transition-transform duration-200" onClick={() => window.open('https://linkedin.com/in/kevingalvanserrano')}>
               <LinkedinLogo size={18} />
               LinkedIn
             </Button>
-            <Button variant="outline" size="lg" className="gap-2" onClick={() => window.open(userInfo?.login ? `https://github.com/${userInfo.login}` : 'https://github.com/kevingalvanserrano')}>
+            <Button variant="outline" size="lg" className="gap-2 hover:scale-105 transition-transform duration-200" onClick={() => window.open(userInfo?.login ? `https://github.com/${userInfo.login}` : 'https://github.com/kevingalvanserrano')}>
               <Github size={18} />
               GitHub
             </Button>
@@ -293,8 +318,8 @@ function App() {
       </section>
 
       {/* Footer */}
-      <footer className="px-6 py-8 border-t">
-        <div className="max-w-4xl mx-auto text-center text-sm text-muted-foreground">
+      <footer className="px-6 py-8 border-t backdrop-blur-sm">
+        <div className="max-w-4xl mx-auto text-center text-sm text-muted-foreground animate-fade-in">
           <p>© 2024 Kevin Galvan Serrano. Built with React, TypeScript, and Tailwind CSS.</p>
         </div>
       </footer>
