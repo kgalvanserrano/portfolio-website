@@ -255,14 +255,14 @@ function App() {
             <div className="grid grid-cols-2 gap-4 w-full max-w-sm">
               <Card className="text-center border-0 bg-card/50 backdrop-blur-sm hover:scale-105 transition-all duration-300 animate-scale-in animate-delay-500">
                 <CardContent className="pt-6">
-                  <div className="text-2xl font-bold text-primary">5+</div>
+                  <div className="text-2xl font-bold text-primary">2+</div>
                   <div className="text-xs text-muted-foreground">Years Experience</div>
                 </CardContent>
               </Card>
               <Card className="text-center border-0 bg-card/50 backdrop-blur-sm hover:scale-105 transition-all duration-300 animate-scale-in animate-delay-600">
                 <CardContent className="pt-6">
-                  <div className="text-2xl font-bold text-accent">15+</div>
-                  <div className="text-xs text-muted-foreground">Projects Completed</div>
+                  <div className="text-2xl font-bold text-accent">5+</div>
+                  <div className="text-xs text-muted-foreground">Key Projects</div>
                 </CardContent>
               </Card>
               <Card className="text-center border-0 bg-card/50 backdrop-blur-sm hover:scale-105 transition-all duration-300 animate-scale-in animate-delay-700 col-span-2">
