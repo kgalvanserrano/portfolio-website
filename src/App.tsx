@@ -86,7 +86,7 @@ function App() {
   const skillItems = useStaggeredScrollAnimation(4) // 4 skill categories
   const projectItems = useStaggeredScrollAnimation(projects.length)
   useEffect(() => {
-    // Get user info and try to fetch GitHub repositories
+    const fetchUserData = async () => {
       try {
         const user = await spark.user()
         setUserInfo(user)
