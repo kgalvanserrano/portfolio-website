@@ -1,21 +1,21 @@
 import { Alert, AlertTitle, AlertDescription } from "./components/ui/alert";
-import { Button } from "./components/ui/button";
+import { Warning, ArrowClockwise } from "@phosph
 import { Warning, ArrowClockwise } from "@phosphor-icons/react";
 
-export const ErrorFallback = ({ error, resetErrorBoundary }) => {
-  // When encountering an error in the development mode, rethrow it and don't display the boundary.
-  // The parent UI will take care of showing a more helpful dialog.
-  if (import.meta.env.DEV) throw error;
 
-  return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
         <Alert variant="destructive" className="mb-6">
-          <Warning size={16} />
-          <AlertTitle>Application Error</AlertTitle>
-          <AlertDescription>
-            Something unexpected happened. Please try refreshing the page or contact Kevin if the issue persists.
-          </AlertDescription>
+          <AlertTitle>Application Error
+
+        </
+    <div className="min-h-screen bg-background flex items-center justify-center p-4">
+          <pre className="text-xs text-
+        <Alert variant="destructive" className="mb-6">
+        
+          onClick={resetErrorBoundary} 
+          variant="outline"
+          <ArrowClockwise size={16} />
+        </Button>
         </Alert>
         
         <div className="bg-card border rounded-lg p-4 mb-6">
@@ -34,6 +34,5 @@ export const ErrorFallback = ({ error, resetErrorBoundary }) => {
           Try Again
         </Button>
       </div>
-    </div>
-  );
-};
+
+
