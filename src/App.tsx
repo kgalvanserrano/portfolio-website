@@ -4,11 +4,79 @@ import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { ArrowUpRight, Github, LinkedinLogo, EnvelopeSimple, MapPin, Calendar, Phone, Sun, Moon, Star, Code, Database, Palette } from "@phosphor-icons/react"
 import { useEffect, useState } from "react"
+import { useScrollAnimation, useStaggeredScrollAnimation } from "@/hooks/useScrollAnimation"
+
+const skills = {
+  "Programming Languages": ["Python", "C++", "JavaScript", "Java"],
+  "Web Technologies": ["React", "Node.js", "Express", "MongoDB", "HTML", "CSS"],
+  "Data & Analytics": ["SQL", "Tableau", "Jupyter Notebook", "Databricks", "NumPy", "Pandas", "Scikit-learn"],
+  "Tools & Platforms": ["Git", "Linux", "Microsoft Office Suite", "Figma", "Photoshop", "React Native", "Expo", "Supabase"]
+}
+
+const experiences = [
+  {
+    title: "Software Developer",
+    company: "TeachMeets",
+    location: "Remote",
+    period: "05/2025 - Present",
+    description: "Architected and developed complete mobile social platform for educators using React Native and Expo. Built full-stack authentication system with user registration, login validation, and secure session management. Implemented real-time messaging system, social feed with interactions, and content creation workflows. Designed and developed complex navigation flows with tab-based architecture and nested routing. Created comprehensive user profile management system with role-based features for teachers and administrators. Currently leading backend integration using Supabase for production deployment and scalable data management.",
+    highlight: true
+  },
+  {
+    title: "Project Management Internship",
+    company: "NASA Ames Research Center",
+    location: "Mountain View, CA",
+    period: "01/2022 - 05/2022",
+    description: "Collaborated with a team of 6 students to develop a database and website for analyzing trends in NASA's small spacecraft missions. Utilized Charts.js to create visualizations, including charts and graphs, to present mission trends and insights, reducing manual analysis time by 25%. Created a MongoDB database to store, organize, and clean data from various sources, enabling efficient data analysis and improving data accessibility by 40%. Developed a user-friendly website using Bootstrap to host the analyzed data and provide an intuitive interface for end-users. Worked closely with the project sponsor and NASA's IT team to gather requirements, provide updates, and incorporate feedback."
+  },
+  {
+    title: "QC & Operations Supervisor",
+    company: "Crystal",
+    location: "San Jose, CA",
+    period: "05/2018 - Present",
+    description: "Implement data-driven decision-making processes to optimize inventory management, safety compliance, and operational efficiency. Conduct end-to-end project management to streamline operations, reduce costs, and maintain service excellence. Perform regular operational analysis to identify areas for improvement and drive continuous optimization."
+  }
+]
+
+const projects = [
+  {
+    title: "CPU Database Project",
+    description: "Led the Scrum Development unit development for a CPU database management system using C++. Applied object-oriented programming principles and utilized data structures like hash tables and binary search trees. Implemented DisplayManager, SearchManager, and UndoManager classes to handle user interactions. Designed and coded a generic Stack data structure, enhancing the project's undo functionality.",
+    tech: ["C++", "Object-Oriented Programming", "Data Structures", "Hash Tables", "Binary Search Trees", "Scrum"],
+    period: "01/2024 - 06/2024",
+    githubUrl: "#"
+  },
+  {
+    title: "Yelp Open Dataset Challenge",
+    description: "Collaborated in a team to analyze 8.6M Yelp reviews and 160K business profiles to determine if restaurant ratings were skewed by proximity to colleges. Preprocessed and analyzed big data using Python, SQL, and Tableau, utilizing Databricks for big data processing. Implemented fuzzy matching to accurately categorize chain and non-chain restaurants, reducing error rate by 7.16%. Discovered no significant correlation between restaurant ratings and distance from universities, with a few outliers.",
+    tech: ["Python", "SQL", "Tableau", "Databricks", "Data Analysis", "Fuzzy Matching", "Big Data"],
+    period: "01/2022 - 05/2022", 
+    githubUrl: "#"
+  },
+  {
+    title: "5/3/1 Calculator Full Stack Project",
+    description: "Developed a full-stack web application implementing the 5/3/1 strength training program calculator. Designed and implemented a responsive user interface using React for the frontend and Express for the backend. Integrated with Node.js server and utilized technologies such as Express, Cors, and Axios.",
+    tech: ["React", "Node.js", "Express", "JavaScript", "Cors", "Axios"],
+    period: "Oct 2023 - Present",
+    githubUrl: "#"
+  }
+]
 
 function App() {
   const [userInfo, setUserInfo] = useState<any>(null)
   const [githubRepos, setGithubRepos] = useState<any[]>([])
   const [isDark, setIsDark] = useState(true)
+
+  // Scroll animation hooks
+  const experienceSection = useScrollAnimation({ threshold: 0.2 })
+  const skillsSection = useScrollAnimation({ threshold: 0.2 })
+  const projectsSection = useScrollAnimation({ threshold: 0.2 })
+  const contactSection = useScrollAnimation({ threshold: 0.2 })
+  
+  // Staggered animations for items
+  const experienceItems = useStaggeredScrollAnimation(experiences.length)
+  const skillItems = useStaggeredScrollAnimation(4) // 4 skill categories
+  const projectItems = useStaggeredScrollAnimation(projects.length)
 
   useEffect(() => {
     // Get user info and try to fetch GitHub repositories
@@ -35,61 +103,12 @@ function App() {
     setIsDark(!isDark)
     document.documentElement.className = isDark ? 'light' : ''
   }
-  const skills = {
-    "Programming Languages": ["Python", "C++", "JavaScript", "Java"],
-    "Web Technologies": ["React", "Node.js", "Express", "MongoDB", "HTML", "CSS"],
-    "Data & Analytics": ["SQL", "Tableau", "Jupyter Notebook", "Databricks", "NumPy", "Pandas", "Scikit-learn"],
-    "Tools & Platforms": ["Git", "Linux", "Microsoft Office Suite", "Figma", "Photoshop", "React Native", "Expo", "Supabase"]
-  }
 
-  const experiences = [
-    {
-      title: "Software Developer",
-      company: "TeachMeets",
-      location: "Remote",
-      period: "05/2025 - Present",
-      description: "Architected and developed complete mobile social platform for educators using React Native and Expo. Built full-stack authentication system with user registration, login validation, and secure session management. Implemented real-time messaging system, social feed with interactions, and content creation workflows. Designed and developed complex navigation flows with tab-based architecture and nested routing. Created comprehensive user profile management system with role-based features for teachers and administrators. Currently leading backend integration using Supabase for production deployment and scalable data management.",
-      highlight: true
-    },
-    {
-      title: "Project Management Internship",
-      company: "NASA Ames Research Center",
-      location: "Mountain View, CA",
-      period: "01/2022 - 05/2022",
-      description: "Collaborated with a team of 6 students to develop a database and website for analyzing trends in NASA's small spacecraft missions. Utilized Charts.js to create visualizations, including charts and graphs, to present mission trends and insights, reducing manual analysis time by 25%. Created a MongoDB database to store, organize, and clean data from various sources, enabling efficient data analysis and improving data accessibility by 40%. Developed a user-friendly website using Bootstrap to host the analyzed data and provide an intuitive interface for end-users. Worked closely with the project sponsor and NASA's IT team to gather requirements, provide updates, and incorporate feedback."
-    },
-    {
-      title: "QC & Operations Supervisor",
-      company: "Crystal",
-      location: "San Jose, CA",
-      period: "05/2018 - Present",
-      description: "Implement data-driven decision-making processes to optimize inventory management, safety compliance, and operational efficiency. Conduct end-to-end project management to streamline operations, reduce costs, and maintain service excellence. Perform regular operational analysis to identify areas for improvement and drive continuous optimization."
-    }
-  ]
-
-  const projects = [
-    {
-      title: "CPU Database Project",
-      description: "Led the Scrum Development unit development for a CPU database management system using C++. Applied object-oriented programming principles and utilized data structures like hash tables and binary search trees. Implemented DisplayManager, SearchManager, and UndoManager classes to handle user interactions. Designed and coded a generic Stack data structure, enhancing the project's undo functionality.",
-      tech: ["C++", "Object-Oriented Programming", "Data Structures", "Hash Tables", "Binary Search Trees", "Scrum"],
-      period: "01/2024 - 06/2024",
-      githubUrl: userInfo?.login ? `https://github.com/${userInfo.login}` : "#"
-    },
-    {
-      title: "Yelp Open Dataset Challenge",
-      description: "Collaborated in a team to analyze 8.6M Yelp reviews and 160K business profiles to determine if restaurant ratings were skewed by proximity to colleges. Preprocessed and analyzed big data using Python, SQL, and Tableau, utilizing Databricks for big data processing. Implemented fuzzy matching to accurately categorize chain and non-chain restaurants, reducing error rate by 7.16%. Discovered no significant correlation between restaurant ratings and distance from universities, with a few outliers.",
-      tech: ["Python", "SQL", "Tableau", "Databricks", "Data Analysis", "Fuzzy Matching", "Big Data"],
-      period: "01/2022 - 05/2022", 
-      githubUrl: userInfo?.login ? `https://github.com/${userInfo.login}` : "#"
-    },
-    {
-      title: "5/3/1 Calculator Full Stack Project",
-      description: "Developed a full-stack web application implementing the 5/3/1 strength training program calculator. Designed and implemented a responsive user interface using React for the frontend and Express for the backend. Integrated with Node.js server and utilized technologies such as Express, Cors, and Axios.",
-      tech: ["React", "Node.js", "Express", "JavaScript", "Cors", "Axios"],
-      period: "Oct 2023 - Present",
-      githubUrl: userInfo?.login ? `https://github.com/${userInfo.login}` : "#"
-    }
-  ]
+  // Update project URLs when userInfo is available
+  const updatedProjects = projects.map(project => ({
+    ...project,
+    githubUrl: userInfo?.login ? `https://github.com/${userInfo.login}` : "#"
+  }))
 
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
@@ -224,27 +243,27 @@ function App() {
       </section>
 
       {/* Experience Section with Timeline */}
-      <section className="relative px-6 py-20 bg-gradient-to-br from-card/30 to-secondary/20 backdrop-blur-sm">
+      <section ref={experienceSection.elementRef as any} className="relative px-6 py-20 bg-gradient-to-br from-card/30 to-secondary/20 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="mb-4 text-4xl font-bold animate-slide-up relative">
+          <div className={`text-center mb-16 transition-all duration-1000 ${experienceSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <h2 className="mb-4 text-4xl font-bold relative">
               <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-primary/5 text-8xl font-bold -z-10">XP</span>
               Professional Experience
             </h2>
             <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
           </div>
           
-          <div className="relative">
+          <div ref={experienceItems.containerRef as any} className="relative">
             {/* Timeline Line */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary hidden md:block"></div>
+            <div className={`absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary hidden md:block transition-all duration-1000 delay-300 ${experienceSection.isVisible ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'}`} style={{transformOrigin: 'top'}}></div>
             
             <div className="space-y-12">
               {experiences.map((exp, index) => (
-                <div key={index} className="relative">
+                <div key={index} className={`relative transition-all duration-700 ${experienceItems.visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
                   {/* Timeline Dot */}
-                  <div className="absolute left-6 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg hidden md:block animate-pulse" style={{animationDelay: `${index * 0.2}s`}}></div>
+                  <div className={`absolute left-6 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg hidden md:block transition-all duration-500 ${experienceItems.visibleItems[index] ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}></div>
                   
-                  <Card className={`ml-0 md:ml-16 border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] animate-slide-up relative overflow-hidden ${exp.highlight ? 'bg-gradient-to-br from-primary/5 to-accent/5' : 'bg-card/50'} backdrop-blur-sm`} style={{animationDelay: `${index * 0.1}s`}}>
+                  <Card className={`ml-0 md:ml-16 border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] relative overflow-hidden ${exp.highlight ? 'bg-gradient-to-br from-primary/5 to-accent/5' : 'bg-card/50'} backdrop-blur-sm`}>
                     {exp.highlight && (
                       <div className="absolute top-4 right-4">
                         <Badge className="bg-gradient-to-r from-primary to-accent text-primary-foreground animate-pulse">
@@ -283,17 +302,17 @@ function App() {
       </section>
 
       {/* Skills Section with Icon Categories */}
-      <section className="px-6 py-20">
+      <section ref={skillsSection.elementRef as any} className="px-6 py-20">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="mb-4 text-4xl font-bold animate-slide-up relative">
+          <div className={`text-center mb-16 transition-all duration-1000 ${skillsSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <h2 className="mb-4 text-4xl font-bold relative">
               <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-accent/5 text-8xl font-bold -z-10">SK</span>
               Skills & Technologies
             </h2>
             <div className="w-20 h-1 bg-gradient-to-r from-accent to-primary mx-auto rounded-full"></div>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div ref={skillItems.containerRef as any} className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {Object.entries(skills).map(([category, techs], index) => {
               const icons = {
                 "Programming Languages": Code,
@@ -304,7 +323,7 @@ function App() {
               const IconComponent = icons[category as keyof typeof icons] || Code
               
               return (
-                <Card key={category} className="border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 animate-slide-up bg-gradient-to-br from-card/50 to-secondary/20 backdrop-blur-sm group relative overflow-hidden" style={{animationDelay: `${index * 0.1}s`}}>
+                <Card key={category} className={`border-0 shadow-xl hover:shadow-2xl transition-all duration-700 hover:scale-105 bg-gradient-to-br from-card/50 to-secondary/20 backdrop-blur-sm group relative overflow-hidden ${skillItems.visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   
                   <CardHeader className="pb-4 relative z-10">
@@ -318,7 +337,7 @@ function App() {
                   <CardContent className="relative z-10">
                     <div className="flex flex-wrap gap-2">
                       {techs.map((tech, techIndex) => (
-                        <Badge key={tech} variant="secondary" className="text-xs hover:scale-110 transition-transform duration-200 animate-fade-in bg-background/50 backdrop-blur-sm" style={{animationDelay: `${(index * 0.1) + (techIndex * 0.05)}s`}}>
+                        <Badge key={tech} variant="secondary" className="text-xs hover:scale-110 transition-transform duration-200 bg-background/50 backdrop-blur-sm">
                           {tech}
                         </Badge>
                       ))}
@@ -332,19 +351,19 @@ function App() {
       </section>
 
       {/* Projects Section with Masonry-style Layout */}
-      <section className="px-6 py-20 bg-gradient-to-br from-secondary/20 to-card/30 backdrop-blur-sm">
+      <section ref={projectsSection.elementRef as any} className="px-6 py-20 bg-gradient-to-br from-secondary/20 to-card/30 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="mb-4 text-4xl font-bold animate-slide-up relative">
+          <div className={`text-center mb-16 transition-all duration-1000 ${projectsSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <h2 className="mb-4 text-4xl font-bold relative">
               <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-primary/5 text-8xl font-bold -z-10">PR</span>
               Featured Projects
             </h2>
             <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
           </div>
           
-          <div className="grid lg:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
-              <Card key={index} className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:scale-[1.02] animate-slide-up bg-card/50 backdrop-blur-sm relative overflow-hidden" style={{animationDelay: `${index * 0.1}s`}}>
+          <div ref={projectItems.containerRef as any} className="grid lg:grid-cols-2 gap-8">
+            {updatedProjects.map((project, index) => (
+              <Card key={index} className={`group hover:shadow-2xl transition-all duration-700 border-0 shadow-xl hover:scale-[1.02] bg-card/50 backdrop-blur-sm relative overflow-hidden ${projectItems.visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
                 <CardHeader className="relative z-10">
@@ -364,7 +383,7 @@ function App() {
                   
                   <div className="flex flex-wrap gap-2 mb-6">
                     {project.tech.map((tech, techIndex) => (
-                      <Badge key={tech} variant="outline" className="text-xs hover:bg-primary/10 transition-colors duration-200 animate-fade-in bg-background/30 backdrop-blur-sm" style={{animationDelay: `${(index * 0.1) + (techIndex * 0.05)}s`}}>
+                      <Badge key={tech} variant="outline" className="text-xs hover:bg-primary/10 transition-colors duration-200 bg-background/30 backdrop-blur-sm">
                         {tech}
                       </Badge>
                     ))}
@@ -389,16 +408,16 @@ function App() {
       </section>
 
       {/* Contact & Education Section */}
-      <section className="px-6 py-20">
+      <section ref={contactSection.elementRef as any} className="px-6 py-20">
         <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16">
+          <div className={`grid lg:grid-cols-2 gap-16 transition-all duration-1000 ${contactSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             {/* Education */}
-            <div>
-              <h2 className="mb-8 text-3xl font-bold animate-slide-up relative">
+            <div className={`transition-all duration-700 delay-200 ${contactSection.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
+              <h2 className="mb-8 text-3xl font-bold relative">
                 Education
                 <div className="w-16 h-1 bg-gradient-to-r from-primary to-accent mt-4 rounded-full"></div>
               </h2>
-              <Card className="border-0 shadow-xl hover:shadow-2xl transition-all duration-500 animate-scale-in bg-gradient-to-br from-card/50 to-secondary/20 backdrop-blur-sm">
+              <Card className="border-0 shadow-xl hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-card/50 to-secondary/20 backdrop-blur-sm">
                 <CardHeader>
                   <div className="flex flex-col gap-4">
                     <div>
@@ -428,19 +447,19 @@ function App() {
             </div>
             
             {/* Contact */}
-            <div>
-              <h2 className="mb-8 text-3xl font-bold animate-slide-up relative">
+            <div className={`transition-all duration-700 delay-400 ${contactSection.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
+              <h2 className="mb-8 text-3xl font-bold relative">
                 Let's work together
                 <div className="w-16 h-1 bg-gradient-to-r from-accent to-primary mt-4 rounded-full"></div>
               </h2>
               
               <div className="space-y-6">
-                <p className="text-muted-foreground text-lg animate-slide-up animate-delay-100 leading-relaxed">
+                <p className="text-muted-foreground text-lg leading-relaxed">
                   Experienced software developer with NASA internship and current mobile app development experience. 
                   Ready to contribute technical expertise and problem-solving skills to your team.
                 </p>
               
-                <div className="space-y-4 animate-slide-up animate-delay-200">
+                <div className="space-y-4">
                   <Button size="lg" className="w-full gap-2 hover:scale-105 transition-all duration-300 animate-glow shadow-lg relative overflow-hidden group" onClick={() => window.open('mailto:kevin.galvanserrano@gmail.com')}>
                     <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <EnvelopeSimple size={18} className="relative z-10" />
