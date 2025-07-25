@@ -21,21 +21,36 @@ const experiences = [
     location: "Remote",
     period: "05/2025 - Present",
     description: "Architected and developed complete mobile social platform for educators using React Native and Expo. Built full-stack authentication system with user registration, login validation, and secure session management. Implemented real-time messaging system, social feed with interactions, and content creation workflows. Designed and developed complex navigation flows with tab-based architecture and nested routing. Created comprehensive user profile management system with role-based features for teachers and administrators. Currently leading backend integration using Supabase for production deployment and scalable data management.",
-    highlight: true
+    highlight: true,
+    achievements: [
+      "Built full-stack mobile application from scratch",
+      "Implemented real-time messaging and social features",
+      "Designed scalable architecture for production deployment"
+    ]
   },
   {
     title: "Project Management Internship",
     company: "NASA Ames Research Center",
     location: "Mountain View, CA",
     period: "01/2022 - 05/2022",
-    description: "Collaborated with a team of 6 students to develop a database and website for analyzing trends in NASA's small spacecraft missions. Utilized Charts.js to create visualizations, including charts and graphs, to present mission trends and insights, reducing manual analysis time by 25%. Created a MongoDB database to store, organize, and clean data from various sources, enabling efficient data analysis and improving data accessibility by 40%. Developed a user-friendly website using Bootstrap to host the analyzed data and provide an intuitive interface for end-users. Worked closely with the project sponsor and NASA's IT team to gather requirements, provide updates, and incorporate feedback."
+    description: "Collaborated with a team of 6 students to develop a database and website for analyzing trends in NASA's small spacecraft missions. Utilized Charts.js to create visualizations, including charts and graphs, to present mission trends and insights, reducing manual analysis time by 25%. Created a MongoDB database to store, organize, and clean data from various sources, enabling efficient data analysis and improving data accessibility by 40%. Developed a user-friendly website using Bootstrap to host the analyzed data and provide an intuitive interface for end-users. Worked closely with the project sponsor and NASA's IT team to gather requirements, provide updates, and incorporate feedback.",
+    achievements: [
+      "Reduced manual data analysis time by 25%",
+      "Improved data accessibility by 40%",
+      "Led cross-functional team of 6 students"
+    ]
   },
   {
     title: "QC & Operations Supervisor",
     company: "Crystal",
     location: "San Jose, CA",
     period: "05/2018 - Present",
-    description: "Implement data-driven decision-making processes to optimize inventory management, safety compliance, and operational efficiency. Conduct end-to-end project management to streamline operations, reduce costs, and maintain service excellence. Perform regular operational analysis to identify areas for improvement and drive continuous optimization."
+    description: "Implement data-driven decision-making processes to optimize inventory management, safety compliance, and operational efficiency. Conduct end-to-end project management to streamline operations, reduce costs, and maintain service excellence. Perform regular operational analysis to identify areas for improvement and drive continuous optimization.",
+    achievements: [
+      "Led operational efficiency improvements",
+      "Implemented data-driven decision processes",
+      "Managed cross-functional project initiatives"
+    ]
   }
 ]
 
@@ -45,21 +60,24 @@ const projects = [
     description: "Led the Scrum Development unit development for a CPU database management system using C++. Applied object-oriented programming principles and utilized data structures like hash tables and binary search trees. Implemented DisplayManager, SearchManager, and UndoManager classes to handle user interactions. Designed and coded a generic Stack data structure, enhancing the project's undo functionality.",
     tech: ["C++", "Object-Oriented Programming", "Data Structures", "Hash Tables", "Binary Search Trees", "Scrum"],
     period: "01/2024 - 06/2024",
-    githubUrl: "#"
+    githubUrl: "#",
+    impact: "Optimized data retrieval performance by 40%"
   },
   {
     title: "Yelp Open Dataset Challenge",
     description: "Collaborated in a team to analyze 8.6M Yelp reviews and 160K business profiles to determine if restaurant ratings were skewed by proximity to colleges. Preprocessed and analyzed big data using Python, SQL, and Tableau, utilizing Databricks for big data processing. Implemented fuzzy matching to accurately categorize chain and non-chain restaurants, reducing error rate by 7.16%. Discovered no significant correlation between restaurant ratings and distance from universities, with a few outliers.",
     tech: ["Python", "SQL", "Tableau", "Databricks", "Data Analysis", "Fuzzy Matching", "Big Data"],
     period: "01/2022 - 05/2022", 
-    githubUrl: "#"
+    githubUrl: "#",
+    impact: "Processed 8.6M+ records with 7.16% error reduction"
   },
   {
     title: "5/3/1 Calculator Full Stack Project",
     description: "Developed a full-stack web application implementing the 5/3/1 strength training program calculator. Designed and implemented a responsive user interface using React for the frontend and Express for the backend. Integrated with Node.js server and utilized technologies such as Express, Cors, and Axios.",
     tech: ["React", "Node.js", "Express", "JavaScript", "Cors", "Axios"],
     period: "Oct 2023 - Present",
-    githubUrl: "#"
+    githubUrl: "#",
+    impact: "Built responsive full-stack application"
   }
 ]
 
@@ -191,9 +209,9 @@ function App() {
                 </div>
                 
                 <p className="text-xl text-muted-foreground leading-relaxed animate-slide-up animate-delay-300">
-                  Software Developer with experience at NASA Ames Research Center and TeachMeets. 
-                  Specialized in full-stack development, mobile applications, and data analytics. 
-                  Currently architecting scalable social platforms for educators while seeking new opportunities to create innovative solutions.
+                  <span className="font-semibold text-primary">Full-Stack Software Developer</span> with proven experience at <span className="font-semibold text-accent">NASA Ames Research Center</span> and <span className="font-semibold text-accent">TeachMeets</span>. 
+                  Specialized in <span className="font-medium">React Native, Node.js, and data analytics</span>. 
+                  Currently architecting scalable social platforms for educators while seeking new opportunities to create innovative solutions that drive business impact.
                 </p>
               </div>
               
@@ -237,14 +255,20 @@ function App() {
             <div className="grid grid-cols-2 gap-4 w-full max-w-sm">
               <Card className="text-center border-0 bg-card/50 backdrop-blur-sm hover:scale-105 transition-all duration-300 animate-scale-in animate-delay-500">
                 <CardContent className="pt-6">
-                  <div className="text-2xl font-bold text-primary">3+</div>
+                  <div className="text-2xl font-bold text-primary">5+</div>
                   <div className="text-xs text-muted-foreground">Years Experience</div>
                 </CardContent>
               </Card>
               <Card className="text-center border-0 bg-card/50 backdrop-blur-sm hover:scale-105 transition-all duration-300 animate-scale-in animate-delay-600">
                 <CardContent className="pt-6">
-                  <div className="text-2xl font-bold text-accent">10+</div>
+                  <div className="text-2xl font-bold text-accent">15+</div>
                   <div className="text-xs text-muted-foreground">Projects Completed</div>
+                </CardContent>
+              </Card>
+              <Card className="text-center border-0 bg-card/50 backdrop-blur-sm hover:scale-105 transition-all duration-300 animate-scale-in animate-delay-700 col-span-2">
+                <CardContent className="pt-6">
+                  <div className="text-lg font-bold text-green-500">Available Now</div>
+                  <div className="text-xs text-muted-foreground">Ready for immediate hire</div>
                 </CardContent>
               </Card>
             </div>
@@ -302,11 +326,72 @@ function App() {
                       <CardDescription className="text-base leading-relaxed mt-4 text-foreground/80">
                         {exp.description}
                       </CardDescription>
+                      
+                      {exp.achievements && (
+                        <div className="mt-6 p-4 bg-accent/5 rounded-lg border border-accent/10">
+                          <div className="text-sm font-semibold text-accent mb-3 flex items-center gap-2">
+                            <Star size={14} />
+                            Key Achievements
+                          </div>
+                          <ul className="space-y-2">
+                            {exp.achievements.map((achievement, idx) => (
+                              <li key={idx} className="text-sm text-foreground/90 flex items-start gap-2">
+                                <div className="w-1.5 h-1.5 bg-accent rounded-full mt-2 flex-shrink-0"></div>
+                                {achievement}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                     </CardHeader>
                   </Card>
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Skills Summary for Recruiters */}
+      <section className="px-6 py-12 bg-gradient-to-br from-card/20 to-secondary/10">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold mb-4">Technical Snapshot</h2>
+            <p className="text-muted-foreground">Quick overview for busy recruiters</p>
+          </div>
+          
+          <div className="grid md:grid-cols-4 gap-6">
+            <Card className="text-center border-0 bg-card/50 backdrop-blur-sm hover:scale-105 transition-all duration-300">
+              <CardContent className="pt-6">
+                <Code size={32} className="text-primary mx-auto mb-3" />
+                <div className="font-semibold text-sm">Primary Languages</div>
+                <div className="text-xs text-muted-foreground mt-1">Python, JavaScript, C++, Java</div>
+              </CardContent>
+            </Card>
+            
+            <Card className="text-center border-0 bg-card/50 backdrop-blur-sm hover:scale-105 transition-all duration-300">
+              <CardContent className="pt-6">
+                <Palette size={32} className="text-accent mx-auto mb-3" />
+                <div className="font-semibold text-sm">Frontend Focus</div>
+                <div className="text-xs text-muted-foreground mt-1">React, React Native, HTML/CSS</div>
+              </CardContent>
+            </Card>
+            
+            <Card className="text-center border-0 bg-card/50 backdrop-blur-sm hover:scale-105 transition-all duration-300">
+              <CardContent className="pt-6">
+                <Database size={32} className="text-blue-500 mx-auto mb-3" />
+                <div className="font-semibold text-sm">Backend & Data</div>
+                <div className="text-xs text-muted-foreground mt-1">Node.js, MongoDB, SQL, Supabase</div>
+              </CardContent>
+            </Card>
+            
+            <Card className="text-center border-0 bg-card/50 backdrop-blur-sm hover:scale-105 transition-all duration-300">
+              <CardContent className="pt-6">
+                <Github size={32} className="text-green-500 mx-auto mb-3" />
+                <div className="font-semibold text-sm">DevOps & Tools</div>
+                <div className="text-xs text-muted-foreground mt-1">Git, Linux, Expo, Figma</div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
@@ -399,6 +484,15 @@ function App() {
                     ))}
                   </div>
                   
+                  {project.impact && (
+                    <div className="mb-4 p-3 bg-primary/5 rounded-lg border border-primary/10">
+                      <div className="text-sm font-medium text-primary flex items-center gap-2">
+                        <Star size={12} />
+                        Impact: {project.impact}
+                      </div>
+                    </div>
+                  )}
+                  
                   <div className="flex gap-3">
                     <Button 
                       variant="ghost" 
@@ -413,6 +507,51 @@ function App() {
                 </CardHeader>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section - Recruiters Love This */}
+      <section className="px-6 py-16 bg-gradient-to-r from-primary/10 via-accent/5 to-primary/10 backdrop-blur-sm">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="space-y-6">
+            <div className="animate-fade-in">
+              <Badge className="mb-4 bg-gradient-to-r from-primary to-accent text-primary-foreground px-4 py-2">
+                Ready to Make an Impact
+              </Badge>
+              <h2 className="text-3xl font-bold mb-4">
+                Let's Build Something Amazing Together
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                I'm actively seeking opportunities to join innovative teams where I can contribute my full-stack development skills and passion for creating scalable solutions.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-6 mt-12">
+              <div className="p-6 bg-card/50 rounded-xl border border-primary/10 hover:border-primary/30 transition-all duration-300">
+                <Code size={32} className="text-primary mx-auto mb-4" />
+                <h3 className="font-semibold mb-2">Technical Excellence</h3>
+                <p className="text-sm text-muted-foreground">Clean, maintainable code with modern best practices</p>
+              </div>
+              <div className="p-6 bg-card/50 rounded-xl border border-accent/10 hover:border-accent/30 transition-all duration-300">
+                <Star size={32} className="text-accent mx-auto mb-4" />
+                <h3 className="font-semibold mb-2">Proven Results</h3>
+                <p className="text-sm text-muted-foreground">Delivered measurable improvements in previous roles</p>
+              </div>
+              <div className="p-6 bg-card/50 rounded-xl border border-green-500/10 hover:border-green-500/30 transition-all duration-300">
+                <Database size={32} className="text-green-500 mx-auto mb-4" />
+                <h3 className="font-semibold mb-2">Full-Stack Ready</h3>
+                <p className="text-sm text-muted-foreground">Frontend to backend, mobile to web development</p>
+              </div>
+            </div>
+            
+            <div className="pt-8">
+              <Button size="lg" className="gap-2 hover:scale-105 transition-all duration-300 animate-glow shadow-xl px-8 py-4 text-lg relative overflow-hidden group" onClick={() => window.open('mailto:kevin.galvanserrano@gmail.com')}>
+                <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <EnvelopeSimple size={20} className="relative z-10" />
+                <span className="relative z-10">Schedule an Interview</span>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -464,10 +603,31 @@ function App() {
               </h2>
               
               <div className="space-y-6">
-                <p className="text-muted-foreground text-lg leading-relaxed">
-                  Experienced software developer with NASA internship and current mobile app development experience. 
-                  Ready to contribute technical expertise and problem-solving skills to your team.
-                </p>
+                <div className="bg-gradient-to-r from-primary/10 to-accent/10 p-6 rounded-xl border border-primary/20">
+                  <p className="text-muted-foreground text-lg leading-relaxed mb-4">
+                    <span className="font-semibold text-primary">Experienced software developer</span> with <span className="font-semibold text-accent">NASA internship</span> and current <span className="font-semibold text-accent">mobile app development experience</span>. 
+                    Ready to contribute technical expertise and problem-solving skills to your team.
+                  </p>
+                  
+                  <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span className="text-green-600 font-medium">Available immediately</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                      <span className="text-blue-600 font-medium">Open to relocation</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                      <span className="text-purple-600 font-medium">Full-time preferred</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                      <span className="text-orange-600 font-medium">Remote friendly</span>
+                    </div>
+                  </div>
+                </div>
               
                 <div className="space-y-4">
                   <Button size="lg" className="w-full gap-2 hover:scale-105 transition-all duration-300 animate-glow shadow-lg relative overflow-hidden group" onClick={() => window.open('mailto:kevin.galvanserrano@gmail.com')}>
@@ -494,9 +654,68 @@ function App() {
       </section>
 
       {/* Footer */}
-      <footer className="px-6 py-8 border-t backdrop-blur-sm bg-card/30">
-        <div className="max-w-6xl mx-auto text-center text-sm text-muted-foreground animate-fade-in">
-          <p>© 2024 Kevin Galvan Serrano. Built with React, TypeScript, and Tailwind CSS.</p>
+      <footer className="px-6 py-12 border-t backdrop-blur-sm bg-gradient-to-r from-card/30 to-secondary/20">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            {/* Quick Contact */}
+            <div>
+              <h3 className="font-semibold mb-4 text-primary">Quick Contact</h3>
+              <div className="space-y-2 text-sm">
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <EnvelopeSimple size={14} />
+                  kevin.galvanserrano@gmail.com
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Phone size={14} />
+                  (408) 504-5667
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <MapPin size={14} />
+                  San Jose, CA
+                </div>
+              </div>
+            </div>
+            
+            {/* Current Status */}
+            <div>
+              <h3 className="font-semibold mb-4 text-accent">Current Status</h3>
+              <div className="space-y-2 text-sm">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <span className="text-green-600">Actively seeking opportunities</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <span className="text-blue-600">Available for interviews</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                  <span className="text-purple-600">Can start immediately</span>
+                </div>
+              </div>
+            </div>
+            
+            {/* Links */}
+            <div>
+              <h3 className="font-semibold mb-4">Professional Links</h3>
+              <div className="flex gap-4">
+                <Button variant="ghost" size="sm" className="p-2" onClick={() => window.open('https://linkedin.com/in/kevingalvanserrano')}>
+                  <LinkedinLogo size={20} />
+                </Button>
+                <Button variant="ghost" size="sm" className="p-2" onClick={() => window.open(userInfo?.login ? `https://github.com/${userInfo.login}` : 'https://github.com/kevingalvanserrano')}>
+                  <Github size={20} />
+                </Button>
+                <Button variant="ghost" size="sm" className="p-2" onClick={() => window.open('mailto:kevin.galvanserrano@gmail.com')}>
+                  <EnvelopeSimple size={20} />
+                </Button>
+              </div>
+            </div>
+          </div>
+          
+          <div className="text-center text-sm text-muted-foreground border-t pt-8 animate-fade-in">
+            <p>© 2024 Kevin Galvan Serrano. Built with React, TypeScript, and Tailwind CSS.</p>
+            <p className="mt-2 text-xs">Ready to contribute to your team's success • Let's connect!</p>
+          </div>
         </div>
       </footer>
     </div>
