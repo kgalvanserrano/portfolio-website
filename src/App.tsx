@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Progress } from "@/components/ui/progress"
 import { ArrowUpRight, Github, LinkedinLogo, EnvelopeSimple, MapPin, Calendar, Phone, Sun, Moon, Star, Code, Database, Palette, TrendUp } from "@phosphor-icons/react"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useMemo } from "react"
 import { useScrollAnimation, useStaggeredScrollAnimation } from "@/hooks/useScrollAnimation"
 import { useTypingAnimation } from "@/hooks/useTypingAnimation"
 
@@ -145,14 +145,11 @@ function App() {
         const user = await spark.user()
         setUserInfo(user)
         
-        // Try to fetch repositories using GitHub API through user login
-        if (user.login) {
-          // Note: This would require actual GitHub API access which may not be available
-          // For now, we'll use the resume projects as fallback
-          console.log('User GitHub login:', user.login)
-        }
+        // Store user login for GitHub profile links
+        // Additional repository data could be fetched here if needed
       } catch (error) {
-        console.log('Could not fetch user data:', error)
+        // Gracefully handle user data fetch errors
+        // App will still function with fallback contact information
       }
     }
     
@@ -165,10 +162,21 @@ function App() {
   }
 
   // Update project URLs when userInfo is available
-  const updatedProjects = projects.map(project => ({
+  const updatedProjects = useMemo(() => projects.map(project => ({
     ...project,
     githubUrl: userInfo?.login ? `https://github.com/${userInfo.login}` : "#"
-  }))
+  })), [userInfo?.login])
+
+  // Memoize proficiency calculation
+  const proficiencyStats = useMemo(() => {
+    const allSkills = Object.values(skills).flat()
+    return [
+      { label: "Advanced", count: allSkills.filter(tech => tech.level >= 85).length, color: "text-green-500", bgColor: "bg-green-500/10", borderColor: "border-green-500/20" },
+      { label: "Proficient", count: allSkills.filter(tech => tech.level >= 75 && tech.level < 85).length, color: "text-blue-500", bgColor: "bg-blue-500/10", borderColor: "border-blue-500/20" },
+      { label: "Intermediate", count: allSkills.filter(tech => tech.level >= 65 && tech.level < 75).length, color: "text-yellow-500", bgColor: "bg-yellow-500/10", borderColor: "border-yellow-500/20" },
+      { label: "Learning", count: allSkills.filter(tech => tech.level < 65).length, color: "text-orange-500", bgColor: "bg-orange-500/10", borderColor: "border-orange-500/20" }
+    ]
+  }, [])
 
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
@@ -202,13 +210,15 @@ function App() {
           size="icon"
           onClick={toggleTheme}
           className="bg-card/80 backdrop-blur-sm border-border/50 hover:bg-accent/20 transition-all duration-300 animate-scale-in animate-delay-500 shadow-lg"
+          aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
         >
           {isDark ? <Sun size={18} /> : <Moon size={18} />}
         </Button>
       </div>
 
       {/* Hero Section with Split Layout */}
-      <section className="relative px-6 py-16 md:py-24 max-w-7xl mx-auto">
+      <main>
+        <section className="relative px-6 py-16 md:py-24 max-w-7xl mx-auto" aria-label="Introduction">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Text Content */}
           <div className="space-y-8 animate-slide-up">
@@ -312,7 +322,7 @@ function App() {
       </section>
 
       {/* Experience Section with Timeline */}
-      <section ref={experienceSection.elementRef as any} className="relative px-6 py-20 bg-gradient-to-br from-card/30 to-secondary/20 backdrop-blur-sm">
+      <section ref={experienceSection.elementRef as any} className="relative px-6 py-20 bg-gradient-to-br from-card/30 to-secondary/20 backdrop-blur-sm" aria-label="Professional Experience">
         <div className="max-w-6xl mx-auto">
           <div className={`text-center mb-16 transition-all duration-1000 ${experienceSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h2 className="mb-4 text-4xl font-bold relative">
@@ -436,7 +446,7 @@ function App() {
       </section>
 
       {/* Skills Section with Proficiency Levels */}
-      <section ref={skillsSection.elementRef as any} className="px-6 py-20">
+      <section ref={skillsSection.elementRef as any} className="px-6 py-20" aria-label="Technical Skills">
         <div className="max-w-6xl mx-auto">
           <div className={`text-center mb-16 transition-all duration-1000 ${skillsSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h2 className="mb-4 text-4xl font-bold relative">
@@ -518,12 +528,7 @@ function App() {
               </CardHeader>
               <CardContent>
                 <div className="grid md:grid-cols-4 gap-6">
-                  {[
-                    { label: "Advanced", count: Object.values(skills).flat().filter(tech => tech.level >= 85).length, color: "text-green-500", bgColor: "bg-green-500/10", borderColor: "border-green-500/20" },
-                    { label: "Proficient", count: Object.values(skills).flat().filter(tech => tech.level >= 75 && tech.level < 85).length, color: "text-blue-500", bgColor: "bg-blue-500/10", borderColor: "border-blue-500/20" },
-                    { label: "Intermediate", count: Object.values(skills).flat().filter(tech => tech.level >= 65 && tech.level < 75).length, color: "text-yellow-500", bgColor: "bg-yellow-500/10", borderColor: "border-yellow-500/20" },
-                    { label: "Learning", count: Object.values(skills).flat().filter(tech => tech.level < 65).length, color: "text-orange-500", bgColor: "bg-orange-500/10", borderColor: "border-orange-500/20" }
-                  ].map((item, index) => (
+                  {proficiencyStats.map((item, index) => (
                     <div key={item.label} className={`text-center p-4 rounded-xl border ${item.bgColor} ${item.borderColor} hover:scale-105 transition-all duration-300`}>
                       <div className={`text-3xl font-bold ${item.color} mb-2`}>{item.count}</div>
                       <div className="text-sm font-medium text-foreground">{item.label}</div>
@@ -542,7 +547,7 @@ function App() {
       </section>
 
       {/* Projects Section with Masonry-style Layout */}
-      <section ref={projectsSection.elementRef as any} className="px-6 py-20 bg-gradient-to-br from-secondary/20 to-card/30 backdrop-blur-sm">
+      <section ref={projectsSection.elementRef as any} className="px-6 py-20 bg-gradient-to-br from-secondary/20 to-card/30 backdrop-blur-sm" aria-label="Featured Projects">
         <div className="max-w-6xl mx-auto">
           <div className={`text-center mb-16 transition-all duration-1000 ${projectsSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h2 className="mb-4 text-4xl font-bold relative">
@@ -653,7 +658,8 @@ function App() {
       </section>
 
       {/* Contact & Education Section */}
-      <section ref={contactSection.elementRef as any} className="px-6 py-20">
+      <section ref={contactSection.elementRef as any} className="px-6 py-20" aria-label="Education and Contact">
+        </main>
         <div className="max-w-6xl mx-auto">
           <div className={`grid lg:grid-cols-2 gap-16 transition-all duration-1000 ${contactSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             {/* Education */}
