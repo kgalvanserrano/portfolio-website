@@ -5,6 +5,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { ArrowUpRight, Github, LinkedinLogo, EnvelopeSimple, MapPin, Calendar, Phone, Sun, Moon, Star, Code, Database, Palette } from "@phosphor-icons/react"
 import { useEffect, useState } from "react"
 import { useScrollAnimation, useStaggeredScrollAnimation } from "@/hooks/useScrollAnimation"
+import { useTypingAnimation } from "@/hooks/useTypingAnimation"
 
 const skills = {
   "Programming Languages": ["Python", "C++", "JavaScript", "Java"],
@@ -73,14 +74,19 @@ function App() {
   const projectsSection = useScrollAnimation({ threshold: 0.2 })
   const contactSection = useScrollAnimation({ threshold: 0.2 })
   
+  // Typing animation for hero title
+  const nameTyping = useTypingAnimation({ 
+    text: "Kevin Galvan Serrano", 
+    speed: 120, 
+    delay: 800 
+  })
+
   // Staggered animations for items
   const experienceItems = useStaggeredScrollAnimation(experiences.length)
   const skillItems = useStaggeredScrollAnimation(4) // 4 skill categories
   const projectItems = useStaggeredScrollAnimation(projects.length)
-
   useEffect(() => {
     // Get user info and try to fetch GitHub repositories
-    const fetchUserData = async () => {
       try {
         const user = await spark.user()
         setUserInfo(user)
@@ -164,8 +170,11 @@ function App() {
                 <h1 className="animate-slide-up animate-delay-100 relative">
                   <span className="absolute -top-4 -left-4 text-primary/10 text-8xl font-bold -z-10">K</span>
                   Hi, I'm <br/>
-                  <span className="text-primary bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-300% animate-gradient">
-                    Kevin Galvan Serrano
+                  <span className="text-primary bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-300% animate-gradient relative">
+                    {nameTyping.displayedText}
+                    {nameTyping.isTyping && (
+                      <span className="animate-pulse text-primary">|</span>
+                    )}
                   </span>
                 </h1>
                 
