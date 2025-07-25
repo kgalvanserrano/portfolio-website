@@ -659,7 +659,6 @@ function App() {
 
       {/* Contact & Education Section */}
       <section ref={contactSection.elementRef as any} className="px-6 py-20" aria-label="Education and Contact">
-        </main>
         <div className="max-w-6xl mx-auto">
           <div className={`grid lg:grid-cols-2 gap-16 transition-all duration-1000 ${contactSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             {/* Education */}
@@ -820,7 +819,8 @@ function App() {
           </div>
         </div>
       </footer>
-    </div>
+    </main>
+  </div>
   )
 }
 
