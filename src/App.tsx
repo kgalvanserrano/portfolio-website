@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Progress } from "@/components/ui/progress"
-import { ArrowUpRight, Github, LinkedinLogo, EnvelopeSimple, MapPin, Calendar, Phone, Sun, Moon, Star, Code, Database, Palette, TrendUp } from "@phosphor-icons/react"
+import { ArrowUpRight, GithubLogo, LinkedinLogo, EnvelopeSimple, MapPin, Calendar, Phone, Sun, Moon, Star, Code, Database, Palette, TrendUp } from "@phosphor-icons/react"
 import { useEffect, useState, useMemo } from "react"
 import { useScrollAnimation, useStaggeredScrollAnimation } from "@/hooks/useScrollAnimation"
 import { useTypingAnimation } from "@/hooks/useTypingAnimation"
@@ -142,8 +142,8 @@ function App() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const user = await spark.user()
-        setUserInfo(user)
+        // const user = await spark.user()
+        // setUserInfo(user)
         
         // Store user login for GitHub profile links
         // Additional repository data could be fetched here if needed
@@ -278,7 +278,7 @@ function App() {
                   <span className="relative z-10">Get in touch</span>
                 </Button>
                 <Button variant="outline" size="lg" className="gap-2 hover:scale-105 transition-all duration-300 bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40" onClick={() => window.open(userInfo?.login ? `https://github.com/${userInfo.login}` : '#')}>
-                  <Github size={18} />
+                  <GithubLogo size={18} />
                   View work
                 </Button>
               </div>
@@ -465,7 +465,7 @@ function App() {
                 "Programming Languages": Code,
                 "Web Technologies": Palette,
                 "Data & Analytics": Database,
-                "Tools & Platforms": Github
+                "Tools & Platforms": GithubLogo
               }
               const IconComponent = icons[category as keyof typeof icons] || Code
               
@@ -601,7 +601,7 @@ function App() {
                       className="gap-2 hover:scale-105 transition-all duration-300 bg-primary/10 hover:bg-primary/20"
                       onClick={() => window.open(project.githubUrl)}
                     >
-                      <Github size={16} />
+                      <GithubLogo size={16} />
                       View Code
                     </Button>
                   </div>
@@ -743,7 +743,7 @@ function App() {
                       LinkedIn
                     </Button>
                     <Button variant="outline" size="lg" className="gap-2 hover:scale-105 transition-all duration-300 bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40" onClick={() => window.open(userInfo?.login ? `https://github.com/${userInfo.login}` : 'https://github.com/kevingalvanserrano')}>
-                      <Github size={18} />
+                      <GithubLogo size={18} />
                       GitHub
                     </Button>
                   </div>
@@ -804,7 +804,7 @@ function App() {
                   <LinkedinLogo size={20} />
                 </Button>
                 <Button variant="ghost" size="sm" className="p-2" onClick={() => window.open(userInfo?.login ? `https://github.com/${userInfo.login}` : 'https://github.com/kevingalvanserrano')}>
-                  <Github size={20} />
+                  <GithubLogo size={20} />
                 </Button>
                 <Button variant="ghost" size="sm" className="p-2" onClick={() => window.open('mailto:kevin.galvanserrano@gmail.com')}>
                   <EnvelopeSimple size={20} />

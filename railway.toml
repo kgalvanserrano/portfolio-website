@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  web:
+    build:
+      commands:
+        - npm ci
+        - npm run build
+      watchPatterns:
+        - "**"
+    start:
+      command: npx serve dist -s -l $PORT
+    variables:
+      NODE_ENV: production
