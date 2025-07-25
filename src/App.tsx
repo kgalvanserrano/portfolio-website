@@ -85,6 +85,7 @@ function App() {
   const experienceItems = useStaggeredScrollAnimation(experiences.length)
   const skillItems = useStaggeredScrollAnimation(4) // 4 skill categories
   const projectItems = useStaggeredScrollAnimation(projects.length)
+  
   useEffect(() => {
     const fetchUserData = async () => {
       try {
