@@ -2,16 +2,43 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { ArrowUpRight, Github, LinkedinLogo, EnvelopeSimple, MapPin, Calendar, Phone, Sun, Moon, Star, Code, Database, Palette } from "@phosphor-icons/react"
+import { Progress } from "@/components/ui/progress"
+import { ArrowUpRight, Github, LinkedinLogo, EnvelopeSimple, MapPin, Calendar, Phone, Sun, Moon, Star, Code, Database, Palette, TrendUp } from "@phosphor-icons/react"
 import { useEffect, useState } from "react"
 import { useScrollAnimation, useStaggeredScrollAnimation } from "@/hooks/useScrollAnimation"
 import { useTypingAnimation } from "@/hooks/useTypingAnimation"
 
 const skills = {
-  "Programming Languages": ["Python", "C++", "JavaScript", "Java"],
-  "Web Technologies": ["React", "Node.js", "Express", "MongoDB", "HTML", "CSS"],
-  "Data & Analytics": ["SQL", "Tableau", "Jupyter Notebook", "Databricks", "NumPy", "Pandas", "Scikit-learn"],
-  "Tools & Platforms": ["Git", "Linux", "Microsoft Office Suite", "Figma", "Photoshop", "React Native", "Expo", "Supabase"]
+  "Programming Languages": [
+    { name: "Python", level: 90, description: "Advanced - Data analysis, automation, web development" },
+    { name: "JavaScript", level: 85, description: "Advanced - Full-stack development, React, Node.js" },
+    { name: "C++", level: 75, description: "Proficient - Data structures, algorithms, system programming" },
+    { name: "Java", level: 70, description: "Proficient - Object-oriented programming, enterprise applications" }
+  ],
+  "Web Technologies": [
+    { name: "React", level: 90, description: "Advanced - Component architecture, hooks, state management" },
+    { name: "React Native", level: 85, description: "Advanced - Mobile app development, cross-platform solutions" },
+    { name: "Node.js", level: 80, description: "Proficient - Backend development, API design, server-side logic" },
+    { name: "HTML/CSS", level: 85, description: "Advanced - Responsive design, modern CSS, accessibility" },
+    { name: "Express", level: 75, description: "Proficient - RESTful APIs, middleware, routing" },
+    { name: "MongoDB", level: 70, description: "Proficient - Document databases, data modeling, queries" }
+  ],
+  "Data & Analytics": [
+    { name: "SQL", level: 80, description: "Proficient - Complex queries, database design, optimization" },
+    { name: "Tableau", level: 75, description: "Proficient - Data visualization, dashboard creation, analytics" },
+    { name: "Pandas", level: 85, description: "Advanced - Data manipulation, analysis, preprocessing" },
+    { name: "NumPy", level: 80, description: "Proficient - Numerical computing, array operations, mathematics" },
+    { name: "Databricks", level: 70, description: "Proficient - Big data processing, collaborative analytics" },
+    { name: "Jupyter", level: 85, description: "Advanced - Interactive computing, data exploration, prototyping" }
+  ],
+  "Tools & Platforms": [
+    { name: "Git", level: 85, description: "Advanced - Version control, branching, collaboration workflows" },
+    { name: "Expo", level: 80, description: "Proficient - React Native development, deployment, testing" },
+    { name: "Supabase", level: 75, description: "Proficient - Backend-as-a-service, authentication, real-time" },
+    { name: "Linux", level: 70, description: "Proficient - Command line, system administration, scripting" },
+    { name: "Figma", level: 75, description: "Proficient - UI/UX design, prototyping, design systems" },
+    { name: "Docker", level: 65, description: "Intermediate - Containerization, deployment, microservices" }
+  ]
 }
 
 const experiences = [
@@ -103,6 +130,14 @@ function App() {
   const experienceItems = useStaggeredScrollAnimation(experiences.length)
   const skillItems = useStaggeredScrollAnimation(4) // 4 skill categories
   const projectItems = useStaggeredScrollAnimation(projects.length)
+  
+  // Function to get proficiency level color and label
+  const getProficiencyInfo = (level: number) => {
+    if (level >= 85) return { label: "Advanced", color: "text-green-500", bgColor: "bg-green-500" }
+    if (level >= 75) return { label: "Proficient", color: "text-blue-500", bgColor: "bg-blue-500" }
+    if (level >= 65) return { label: "Intermediate", color: "text-yellow-500", bgColor: "bg-yellow-500" }
+    return { label: "Learning", color: "text-orange-500", bgColor: "bg-orange-500" }
+  }
   
   useEffect(() => {
     const fetchUserData = async () => {
@@ -357,57 +392,64 @@ function App() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
             <h2 className="text-2xl font-bold mb-4">Technical Snapshot</h2>
-            <p className="text-muted-foreground">Quick overview for busy recruiters</p>
+            <p className="text-muted-foreground">Core competencies at a glance</p>
           </div>
           
           <div className="grid md:grid-cols-4 gap-6">
             <Card className="text-center border-0 bg-card/50 backdrop-blur-sm hover:scale-105 transition-all duration-300">
               <CardContent className="pt-6">
                 <Code size={32} className="text-primary mx-auto mb-3" />
-                <div className="font-semibold text-sm">Primary Languages</div>
-                <div className="text-xs text-muted-foreground mt-1">Python, JavaScript, C++, Java</div>
+                <div className="font-semibold text-sm">Core Languages</div>
+                <div className="text-xs text-muted-foreground mt-1">Python • JavaScript • C++</div>
+                <div className="text-xs text-green-500 mt-2 font-medium">85%+ Proficiency</div>
               </CardContent>
             </Card>
             
             <Card className="text-center border-0 bg-card/50 backdrop-blur-sm hover:scale-105 transition-all duration-300">
               <CardContent className="pt-6">
                 <Palette size={32} className="text-accent mx-auto mb-3" />
-                <div className="font-semibold text-sm">Frontend Focus</div>
-                <div className="text-xs text-muted-foreground mt-1">React, React Native, HTML/CSS</div>
+                <div className="font-semibold text-sm">Frontend Stack</div>
+                <div className="text-xs text-muted-foreground mt-1">React • React Native • CSS</div>
+                <div className="text-xs text-green-500 mt-2 font-medium">90%+ Proficiency</div>
               </CardContent>
             </Card>
             
             <Card className="text-center border-0 bg-card/50 backdrop-blur-sm hover:scale-105 transition-all duration-300">
               <CardContent className="pt-6">
                 <Database size={32} className="text-blue-500 mx-auto mb-3" />
-                <div className="font-semibold text-sm">Backend & Data</div>
-                <div className="text-xs text-muted-foreground mt-1">Node.js, MongoDB, SQL, Supabase</div>
+                <div className="font-semibold text-sm">Data & Backend</div>
+                <div className="text-xs text-muted-foreground mt-1">Node.js • SQL • MongoDB</div>
+                <div className="text-xs text-blue-500 mt-2 font-medium">80%+ Proficiency</div>
               </CardContent>
             </Card>
             
             <Card className="text-center border-0 bg-card/50 backdrop-blur-sm hover:scale-105 transition-all duration-300">
               <CardContent className="pt-6">
-                <Github size={32} className="text-green-500 mx-auto mb-3" />
-                <div className="font-semibold text-sm">DevOps & Tools</div>
-                <div className="text-xs text-muted-foreground mt-1">Git, Linux, Expo, Figma</div>
+                <TrendUp size={32} className="text-green-500 mx-auto mb-3" />
+                <div className="font-semibold text-sm">Growth Mindset</div>
+                <div className="text-xs text-muted-foreground mt-1">Continuous Learning</div>
+                <div className="text-xs text-green-500 mt-2 font-medium">Always Improving</div>
               </CardContent>
             </Card>
           </div>
         </div>
       </section>
 
-      {/* Skills Section with Icon Categories */}
+      {/* Skills Section with Proficiency Levels */}
       <section ref={skillsSection.elementRef as any} className="px-6 py-20">
         <div className="max-w-6xl mx-auto">
           <div className={`text-center mb-16 transition-all duration-1000 ${skillsSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h2 className="mb-4 text-4xl font-bold relative">
               <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-accent/5 text-8xl font-bold -z-10">SK</span>
-              Skills & Technologies
+              Skills & Proficiency
             </h2>
             <div className="w-20 h-1 bg-gradient-to-r from-accent to-primary mx-auto rounded-full"></div>
+            <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
+              Comprehensive technical assessment showcasing competency levels across key technologies
+            </p>
           </div>
           
-          <div ref={skillItems.containerRef as any} className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div ref={skillItems.containerRef as any} className="grid lg:grid-cols-2 gap-8">
             {Object.entries(skills).map(([category, techs], index) => {
               const icons = {
                 "Programming Languages": Code,
@@ -418,29 +460,83 @@ function App() {
               const IconComponent = icons[category as keyof typeof icons] || Code
               
               return (
-                <Card key={category} className={`border-0 shadow-xl hover:shadow-2xl transition-all duration-700 hover:scale-105 bg-gradient-to-br from-card/50 to-secondary/20 backdrop-blur-sm group relative overflow-hidden ${skillItems.visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+                <Card key={category} className={`border-0 shadow-xl hover:shadow-2xl transition-all duration-700 bg-gradient-to-br from-card/50 to-secondary/20 backdrop-blur-sm group relative overflow-hidden ${skillItems.visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   
                   <CardHeader className="pb-4 relative z-10">
-                    <div className="flex items-center gap-3 mb-4">
+                    <div className="flex items-center gap-3 mb-6">
                       <div className="p-3 bg-primary/10 rounded-xl">
                         <IconComponent size={24} className="text-primary" />
                       </div>
-                      <CardTitle className="text-lg">{category}</CardTitle>
+                      <CardTitle className="text-xl">{category}</CardTitle>
                     </div>
                   </CardHeader>
-                  <CardContent className="relative z-10">
-                    <div className="flex flex-wrap gap-2">
-                      {techs.map((tech, techIndex) => (
-                        <Badge key={tech} variant="secondary" className="text-xs hover:scale-110 transition-transform duration-200 bg-background/50 backdrop-blur-sm">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
+                  <CardContent className="relative z-10 space-y-6">
+                    {techs.map((tech, techIndex) => {
+                      const profInfo = getProficiencyInfo(tech.level)
+                      return (
+                        <div key={tech.name} className="space-y-3">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                              <span className="font-medium text-foreground">{tech.name}</span>
+                              <Badge variant="outline" className={`text-xs ${profInfo.color} border-current`}>
+                                {profInfo.label}
+                              </Badge>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <TrendUp size={14} className={profInfo.color} />
+                              <span className="text-sm font-medium text-muted-foreground">{tech.level}%</span>
+                            </div>
+                          </div>
+                          
+                          <div className="space-y-2">
+                            <Progress 
+                              value={tech.level} 
+                              className="h-2 bg-muted/50"
+                            />
+                            <p className="text-xs text-muted-foreground leading-relaxed">
+                              {tech.description}
+                            </p>
+                          </div>
+                        </div>
+                      )
+                    })}
                   </CardContent>
                 </Card>
               )
             })}
+          </div>
+
+          {/* Overall Proficiency Summary */}
+          <div className={`mt-16 transition-all duration-1000 delay-500 ${skillsSection.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <Card className="border-0 shadow-xl bg-gradient-to-br from-primary/10 via-accent/5 to-primary/10 backdrop-blur-sm">
+              <CardHeader className="text-center pb-4">
+                <CardTitle className="text-2xl mb-2">Proficiency Summary</CardTitle>
+                <CardDescription className="text-base">
+                  Quick assessment for technical screening
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid md:grid-cols-4 gap-6">
+                  {[
+                    { label: "Advanced", count: Object.values(skills).flat().filter(tech => tech.level >= 85).length, color: "text-green-500", bgColor: "bg-green-500/10", borderColor: "border-green-500/20" },
+                    { label: "Proficient", count: Object.values(skills).flat().filter(tech => tech.level >= 75 && tech.level < 85).length, color: "text-blue-500", bgColor: "bg-blue-500/10", borderColor: "border-blue-500/20" },
+                    { label: "Intermediate", count: Object.values(skills).flat().filter(tech => tech.level >= 65 && tech.level < 75).length, color: "text-yellow-500", bgColor: "bg-yellow-500/10", borderColor: "border-yellow-500/20" },
+                    { label: "Learning", count: Object.values(skills).flat().filter(tech => tech.level < 65).length, color: "text-orange-500", bgColor: "bg-orange-500/10", borderColor: "border-orange-500/20" }
+                  ].map((item, index) => (
+                    <div key={item.label} className={`text-center p-4 rounded-xl border ${item.bgColor} ${item.borderColor} hover:scale-105 transition-all duration-300`}>
+                      <div className={`text-3xl font-bold ${item.color} mb-2`}>{item.count}</div>
+                      <div className="text-sm font-medium text-foreground">{item.label}</div>
+                      <div className="text-xs text-muted-foreground mt-1">
+                        {item.label === "Advanced" ? "Production ready" : 
+                         item.label === "Proficient" ? "Project ready" :
+                         item.label === "Intermediate" ? "Guided work" : "Actively learning"}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
