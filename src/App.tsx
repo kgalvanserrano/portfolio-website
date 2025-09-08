@@ -814,7 +814,7 @@ function App() {
           </div>
           
           <div className="text-center text-sm text-muted-foreground border-t pt-8 animate-fade-in">
-            <p>© 2024 Kevin Galvan Serrano. Built with React, TypeScript, and Tailwind CSS.</p>
+            <p>© 2025 Kevin Galvan Serrano. Built with React, TypeScript, and Tailwind CSS.</p>
             <p className="mt-2 text-xs">Ready to contribute to your team's success • Let's connect!</p>
           </div>
         </div>
