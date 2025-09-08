@@ -1,7 +1,5 @@
 # Developer Portfolio
 
-A modern, responsive developer portfolio built with React, TypeScript, Vite, and Tailwind CSS. Originally created with GitHub Spark and now ready for deployment on your own domain.
-
 ## 🚀 Features
 
 - Modern React 19 with TypeScript
