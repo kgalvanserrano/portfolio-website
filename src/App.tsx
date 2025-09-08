@@ -164,7 +164,11 @@ function App() {
   // Update project URLs when userInfo is available
   const updatedProjects = useMemo(() => projects.map(project => ({
     ...project,
-    githubUrl: userInfo?.login ? `https://github.com/${userInfo.login}` : "#"
+    // preserve explicit project.githubUrl when provided; otherwise fall back
+    // to the user's GitHub profile (if available) or a safe '#' placeholder
+    githubUrl: project.githubUrl && project.githubUrl !== "#"
+      ? project.githubUrl
+      : (userInfo?.login ? `https://github.com/${userInfo.login}` : "#")
   })), [userInfo?.login])
 
   // Memoize proficiency calculation
