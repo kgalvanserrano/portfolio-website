@@ -95,7 +95,7 @@ const projects = [
     description: "Led the Scrum Development unit development for a CPU database management system using C++. Applied object-oriented programming principles and utilized data structures like hash tables and binary search trees. Implemented DisplayManager, SearchManager, and UndoManager classes to handle user interactions. Designed and coded a generic Stack data structure, enhancing the project's undo functionality.",
     tech: ["C++", "Object-Oriented Programming", "Data Structures", "Hash Tables", "Binary Search Trees", "Scrum"],
     period: "01/2024 - 06/2024",
-    githubUrl: "#",
+    githubUrl: "https://github.com/kgalvanserrano/cis22c-project",
     impact: "Optimized data retrieval performance by 40%"
   },
   {
@@ -103,7 +103,7 @@ const projects = [
     description: "Collaborated in a team to analyze 8.6M Yelp reviews and 160K business profiles to determine if restaurant ratings were skewed by proximity to colleges. Preprocessed and analyzed big data using Python, SQL, and Tableau, utilizing Databricks for big data processing. Implemented fuzzy matching to accurately categorize chain and non-chain restaurants, reducing error rate by 7.16%. Discovered no significant correlation between restaurant ratings and distance from universities, with a few outliers.",
     tech: ["Python", "SQL", "Tableau", "Databricks", "Data Analysis", "Fuzzy Matching", "Big Data"],
     period: "01/2022 - 05/2022", 
-    githubUrl: "#",
+    githubUrl: "https://github.com/kgalvanserrano/Yelp-Big-Data-Project",
     impact: "Processed 8.6M+ records with 7.16% error reduction"
   },
 ]
