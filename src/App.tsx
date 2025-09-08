@@ -680,7 +680,7 @@ function App() {
                       </div>
                     </div>
                     <Badge variant="outline" className="text-xs self-start bg-accent/10 border-accent/20">
-                      Graduated 2022
+                      Aug 2020 -  Aug 2022
                     </Badge>
                   </div>
                   
