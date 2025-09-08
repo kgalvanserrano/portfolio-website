@@ -44,7 +44,7 @@ const skills = {
 const experiences = [
   {
     title: "Software Developer",
-    company: "TeachMeets",
+    company: "K'nosco",
     location: "Remote",
     period: "05/2025 - Present",
     description: "Architected and developed complete mobile social platform for educators using React Native and Expo. Built full-stack authentication system with user registration, login validation, and secure session management. Implemented real-time messaging system, social feed with interactions, and content creation workflows. Designed and developed complex navigation flows with tab-based architecture and nested routing. Created comprehensive user profile management system with role-based features for teachers and administrators. Currently leading backend integration using Supabase for production deployment and scalable data management.",
@@ -83,6 +83,14 @@ const experiences = [
 
 const projects = [
   {
+  title: "Weather Dashboard",
+  description: "Built a responsive React + Vite dashboard that fetches weather and 5-day forecasts from the OpenWeather One Call and Geocoding APIs. Features debounced city search, defensive JSON parsing, responsive UI components, and a small animation-friendly design; deployed as a static site (Vercel/Netlify).",
+  tech: ["React", "Vite", "JavaScript", "OpenWeather API", "CSS", "Fetch"],
+  period: "09/2025",
+  githubUrl: "https://github.com/kgalvanserrano/weather-dashboard",
+  impact: "Delivered a polished, deployable demo showing API integration, responsive UI, and defensive data handling; ready for live hosting."
+},
+  {
     title: "CPU Database Project",
     description: "Led the Scrum Development unit development for a CPU database management system using C++. Applied object-oriented programming principles and utilized data structures like hash tables and binary search trees. Implemented DisplayManager, SearchManager, and UndoManager classes to handle user interactions. Designed and coded a generic Stack data structure, enhancing the project's undo functionality.",
     tech: ["C++", "Object-Oriented Programming", "Data Structures", "Hash Tables", "Binary Search Trees", "Scrum"],
@@ -98,14 +106,6 @@ const projects = [
     githubUrl: "#",
     impact: "Processed 8.6M+ records with 7.16% error reduction"
   },
-  {
-    title: "5/3/1 Calculator Full Stack Project",
-    description: "Developed a full-stack web application implementing the 5/3/1 strength training program calculator. Designed and implemented a responsive user interface using React for the frontend and Express for the backend. Integrated with Node.js server and utilized technologies such as Express, Cors, and Axios.",
-    tech: ["React", "Node.js", "Express", "JavaScript", "Cors", "Axios"],
-    period: "Oct 2023 - Present",
-    githubUrl: "#",
-    impact: "Built responsive full-stack application"
-  }
 ]
 
 function App() {
