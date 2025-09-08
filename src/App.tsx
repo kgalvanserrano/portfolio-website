@@ -95,7 +95,7 @@ const projects = [
     description: "Led the Scrum Development unit development for a CPU database management system using C++. Applied object-oriented programming principles and utilized data structures like hash tables and binary search trees. Implemented DisplayManager, SearchManager, and UndoManager classes to handle user interactions. Designed and coded a generic Stack data structure, enhancing the project's undo functionality.",
     tech: ["C++", "Object-Oriented Programming", "Data Structures", "Hash Tables", "Binary Search Trees", "Scrum"],
     period: "01/2024 - 06/2024",
-    githubUrl: "#",
+    githubUrl: "https://github.com/kgalvanserrano/cis22c-project",
     impact: "Optimized data retrieval performance by 40%"
   },
   {
@@ -103,7 +103,7 @@ const projects = [
     description: "Collaborated in a team to analyze 8.6M Yelp reviews and 160K business profiles to determine if restaurant ratings were skewed by proximity to colleges. Preprocessed and analyzed big data using Python, SQL, and Tableau, utilizing Databricks for big data processing. Implemented fuzzy matching to accurately categorize chain and non-chain restaurants, reducing error rate by 7.16%. Discovered no significant correlation between restaurant ratings and distance from universities, with a few outliers.",
     tech: ["Python", "SQL", "Tableau", "Databricks", "Data Analysis", "Fuzzy Matching", "Big Data"],
     period: "01/2022 - 05/2022", 
-    githubUrl: "#",
+    githubUrl: "https://github.com/kgalvanserrano/Yelp-Big-Data-Project",
     impact: "Processed 8.6M+ records with 7.16% error reduction"
   },
 ]
@@ -164,7 +164,11 @@ function App() {
   // Update project URLs when userInfo is available
   const updatedProjects = useMemo(() => projects.map(project => ({
     ...project,
-    githubUrl: userInfo?.login ? `https://github.com/${userInfo.login}` : "#"
+    // preserve explicit project.githubUrl when provided; otherwise fall back
+    // to the user's GitHub profile (if available) or a safe '#' placeholder
+    githubUrl: project.githubUrl && project.githubUrl !== "#"
+      ? project.githubUrl
+      : (userInfo?.login ? `https://github.com/${userInfo.login}` : "#")
   })), [userInfo?.login])
 
   // Memoize proficiency calculation
@@ -680,7 +684,7 @@ function App() {
                       </div>
                     </div>
                     <Badge variant="outline" className="text-xs self-start bg-accent/10 border-accent/20">
-                      Graduated 2022
+                      Aug 2020 -  Aug 2022
                     </Badge>
                   </div>
                   
@@ -742,7 +746,7 @@ function App() {
                       <LinkedinLogo size={18} />
                       LinkedIn
                     </Button>
-                    <Button variant="outline" size="lg" className="gap-2 hover:scale-105 transition-all duration-300 bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40" onClick={() => window.open(userInfo?.login ? `https://github.com/${userInfo.login}` : 'https://github.com/kevingalvanserrano')}>
+                    <Button variant="outline" size="lg" className="gap-2 hover:scale-105 transition-all duration-300 bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40" onClick={() => window.open(userInfo?.login ? `https://github.com/${userInfo.login}` : 'https://github.com/kgalvanserrano')}>
                       <GithubLogo size={18} />
                       GitHub
                     </Button>
@@ -814,7 +818,7 @@ function App() {
           </div>
           
           <div className="text-center text-sm text-muted-foreground border-t pt-8 animate-fade-in">
-            <p>© 2024 Kevin Galvan Serrano. Built with React, TypeScript, and Tailwind CSS.</p>
+            <p>© 2025 Kevin Galvan Serrano. Built with React, TypeScript, and Tailwind CSS.</p>
             <p className="mt-2 text-xs">Ready to contribute to your team's success • Let's connect!</p>
           </div>
         </div>
