@@ -742,7 +742,7 @@ function App() {
                       <LinkedinLogo size={18} />
                       LinkedIn
                     </Button>
-                    <Button variant="outline" size="lg" className="gap-2 hover:scale-105 transition-all duration-300 bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40" onClick={() => window.open(userInfo?.login ? `https://github.com/${userInfo.login}` : 'https://github.com/kevingalvanserrano')}>
+                    <Button variant="outline" size="lg" className="gap-2 hover:scale-105 transition-all duration-300 bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40" onClick={() => window.open(userInfo?.login ? `https://github.com/${userInfo.login}` : 'https://github.com/kgalvanserrano')}>
                       <GithubLogo size={18} />
                       GitHub
                     </Button>
