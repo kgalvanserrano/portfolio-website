@@ -88,6 +88,9 @@ const projects = [
   tech: ["React", "Vite", "JavaScript", "OpenWeather API", "CSS", "Fetch"],
   period: "09/2025",
   githubUrl: "https://github.com/kgalvanserrano/weather-dashboard",
+  liveUrl: "https://weather.kgalvan.dev",
+  // put a screenshot at /weather-dashboard-screenshot.png (public/) to show here
+  image: "/weather-dashboard-screenshot.png",
   impact: "Delivered a polished, deployable demo showing API integration, responsive UI, and defensive data handling; ready for live hosting."
 },
   {
@@ -162,9 +165,13 @@ function App() {
   }
 
   // Update project URLs when userInfo is available
+  // Keep an explicit project.githubUrl if present; otherwise fall back to
+  // the user's GitHub profile (if available) or a safe '#'.
   const updatedProjects = useMemo(() => projects.map(project => ({
     ...project,
-    githubUrl: userInfo?.login ? `https://github.com/${userInfo.login}` : "#"
+    githubUrl: project.githubUrl && project.githubUrl !== "#"
+      ? project.githubUrl
+      : (userInfo?.login ? `https://github.com/${userInfo.login}` : "#")
   })), [userInfo?.login])
 
   // Memoize proficiency calculation
@@ -574,6 +581,13 @@ function App() {
                       <CardDescription className="text-base leading-relaxed text-foreground/80">
                         {project.description}
                       </CardDescription>
+
+                      {/* optional screenshot */}
+                      {project.image && (
+                        <div className="my-6">
+                          <img src={project.image} alt={`${project.title} screenshot`} className="w-full max-w-md mx-auto rounded-lg border border-border/20 shadow-lg" />
+                        </div>
+                      )}
                     </div>
                   </div>
                   
@@ -595,6 +609,18 @@ function App() {
                   )}
                   
                   <div className="flex gap-3">
+                    {project.liveUrl && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="gap-2 hover:scale-105 transition-all duration-300"
+                        onClick={() => window.open(project.liveUrl)}
+                      >
+                        <ArrowUpRight size={14} />
+                        Live
+                      </Button>
+                    )}
+
                     <Button 
                       variant="ghost" 
                       size="sm" 
