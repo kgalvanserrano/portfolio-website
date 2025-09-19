@@ -596,8 +596,14 @@ function App() {
 
                       {/* optional screenshot */}
                       {project.image && (
-                        <div className="my-6">
-                          <img src={project.image} loading="lazy" alt={`${project.title} screenshot`} className="w-full max-w-md mx-auto rounded-lg border border-border/20 shadow-lg" />
+                        <div className="my-6" style={{ contentVisibility: 'auto' }}>
+                          <img
+                            src={project.image}
+                            loading="lazy"
+                            decoding="async"
+                            alt={`${project.title} screenshot`}
+                            className="w-full max-w-md mx-auto rounded-lg border border-border/20 shadow-lg object-cover"
+                          />
                         </div>
                       )}
                     </div>

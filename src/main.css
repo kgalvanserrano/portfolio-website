@@ -28,6 +28,24 @@
     border-color: var(--color-gray-200, currentColor);
   }
 }
+/* Reduce motion and heavy effects for users/devices that prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Tone down heavy blurs that are expensive to paint */
+  .backdrop-blur-sm,
+  .backdrop-blur-md,
+  .backdrop-blur-lg,
+  .backdrop-blur-xl,
+  .backdrop-blur-2xl,
+  .backdrop-blur-3xl {
+    backdrop-filter: none !important;
+  }
+}
 
 /*
   ---break---
