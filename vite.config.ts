@@ -11,26 +11,9 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  esbuild: {
-    drop: ["console", "debugger"],
-  },
   resolve: {
     alias: {
       '@': resolve(projectRoot, 'src')
     }
-  },
-  build: {
-    target: 'es2020',
-    rollupOptions: {
-      output: {
-        manualChunks(id) {
-          if (!id.includes('node_modules')) return undefined;
-          if (id.includes('react')) return 'react-vendor';
-          if (id.includes('@phosphor-icons')) return 'icons-vendor';
-          if (id.includes('@radix-ui')) return 'radix-vendor';
-          return 'vendor';
-        },
-      },
-    },
   },
 });
