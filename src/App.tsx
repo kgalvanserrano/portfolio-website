@@ -83,6 +83,18 @@ const experiences = [
 
 const projects = [
   {
+    title: "Budget Tracker",
+    description:
+      "Built a responsive React budget tracker with interactive Chart.js visualizations, category insights, and client-side persistence using localStorage. Mobile‑first UI, SPA routing, and a clean green theme; production‑ready and deployed.",
+    tech: ["React", "Vite", "JavaScript", "Chart.js", "localStorage"],
+    period: "09/2025",
+    githubUrl: "https://github.com/kgalvanserrano/budget-tracker",
+    liveUrl: "https://budget-tracker.kgalvan.dev",
+    image: "/budget-tracker.png",
+    impact:
+      "Empowers users to track income/expenses and visualize budgets quickly on mobile and desktop.",
+  },
+  {
   title: "Weather Dashboard",
   description: "Built a responsive React + Vite dashboard that fetches weather and 5-day forecasts from the OpenWeather One Call and Geocoding APIs. Features debounced city search, defensive JSON parsing, responsive UI components, and a small animation-friendly design; deployed as a static site (Vercel/Netlify).",
   tech: ["React", "Vite", "JavaScript", "OpenWeather API", "CSS", "Fetch"],
@@ -585,7 +597,7 @@ function App() {
                       {/* optional screenshot */}
                       {project.image && (
                         <div className="my-6">
-                          <img src={project.image} alt={`${project.title} screenshot`} className="w-full max-w-md mx-auto rounded-lg border border-border/20 shadow-lg" />
+                          <img src={project.image} loading="lazy" alt={`${project.title} screenshot`} className="w-full max-w-md mx-auto rounded-lg border border-border/20 shadow-lg" />
                         </div>
                       )}
                     </div>
